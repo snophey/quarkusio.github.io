@@ -50,6 +50,15 @@ For information about how to support multiple tenants, see xref:security-openid-
 
 == Using the authorization code flow mechanism
 
+=== Configuring the Quarkus application to redirect the user
+
+As outlined in the previous section, the Authorization Code Flow begins with the user being redirected to the OIDC provider for authentication.
+To enable this redirect, the `quarkus.oidc.application-type` property must be set to `web-app`. This tells Quarkus that the
+application serves pages (usually a front-end application).
+For this type of client, the Authorization Code Flow is defined as the preferred method for authenticating users.
+For applications that serve both a front-end and a REST API, the `hybrid` setting can be used instead. In this case, the Authentication
+Code Flow will only be triggered if the `Authorization` request header is not set.
+
 === Configuring access to the OIDC provider endpoint
 
 The OIDC `web-app` application requires URLs of the OIDC provider's authorization, token, `JsonWebKey` (JWK) set, and possibly the `UserInfo`, introspection and end-session (RP-initiated logout) endpoints.
