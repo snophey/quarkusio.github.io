@@ -258,6 +258,14 @@ Then, in an `OpenID Connect` card, click the `Keycloak provider` link .
  ** Accessing `/api/admin` returns a `200` status code.
  ** Accessing `/api/users/me` returns a `200` status code.
 
+[NOTE]
+====
+Note that the above only works when making the request with the access token. Inspect both tokens in the dev UI and you will find that
+only the access token contains the list of roles. To tell Keycloak to include this information in the ID token as well, add the
+`microprofile-jwt` scope to the list of scopes using the `quarkus.oidc.authentication.scopes` property. For more information, see the
+[Keycloak server administration guide](https://www.keycloak.org/docs/latest/server_admin/#protocol).
+===
+
 == Run the Application in JVM mode
 
 When you are done with dev mode, you can run the application as a standard Java application.
